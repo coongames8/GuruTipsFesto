@@ -50,7 +50,7 @@ export default function PaystackPayments({ setUserData }) {
   const returnPeriod = () => {
     if (price === 200) {
       return 'Daily'
-    } else if (price === 600) {
+    } else if (price === 750) {
       return 'Weekly'
     } else if (price === 3000) {
       return 'Monthly'
@@ -88,9 +88,9 @@ export default function PaystackPayments({ setUserData }) {
           <span className="price">KSH 200</span>
         </fieldset>
         <fieldset>
-          <input name="prices" type="radio" value={600} id="weekly" checked={price === 600 ? true : false} onChange={(e) => setPrice(600)} />
+          <input name="prices" type="radio" value={750} id="weekly" checked={price === 750 ? true : false} onChange={(e) => setPrice(750)} />
           <label htmlFor="weekly">7 Days VIP</label>
-          <span className="price">KSH 600</span>
+          <span className="price">KSH 750</span>
         </fieldset>
         <fieldset>
           <input name="prices" type="radio" value={3000} id="monthly" checked={price === 3000 ? true : false} onChange={(e) => setPrice(3000)} />
