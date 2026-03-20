@@ -29,8 +29,8 @@ const handlePayment = async (
     currency: "KES",
     url: window.location.origin + window.location.pathname,
     callbackUrl: window.location.origin + redirectPath,
-    consumerKey: "nbZBtDnSEt9X+l0cHNDFren+7dTQIJXl",
-    consumerSecret: "3p2NhatNMO64hzQpqGUs062LTvE="
+    consumerKey: "i+5HTEXjBox0yM7JL1TTfOlMQWRW0CCJ",
+    consumerSecret: "8qecPKt5i0XVZSzPVgwaRkOgrBc="
   };
 
   setProcessing(true);
@@ -212,8 +212,8 @@ export default function PesapalPayments({ setUserData }) {
   const checkPaymentStatus = async (orderTrackingId, handleUpgrade, stopPolling) => {
     const paymentData = {
       orderTrackingId,
-      consumerKey: "nbZBtDnSEt9X+l0cHNDFren+7dTQIJXl",
-      consumerSecret: "3p2NhatNMO64hzQpqGUs062LTvE="
+      consumerKey: "i+5HTEXjBox0yM7JL1TTfOlMQWRW0CCJ",
+      consumerSecret: "8qecPKt5i0XVZSzPVgwaRkOgrBc="
     };
 
     try {
