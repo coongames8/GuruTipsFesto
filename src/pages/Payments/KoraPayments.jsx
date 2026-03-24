@@ -60,7 +60,6 @@ export default function KoraPayments({ setUserData }) {
             email: currentUser.email,
         },
         onSuccess: () => {
-            console.log("Payment success response:", response);
             handleUpgrade();
         },
         onFailed: (err) => {
