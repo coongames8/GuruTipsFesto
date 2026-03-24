@@ -1,29 +1,19 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import './Ticket.scss';
 import { PriceContext } from '../../PriceContext';
 import AppHelmet from '../../components/AppHelmet';
-import { PaystackButton } from 'react-paystack';
+import KoraPayment from 'kora-checkout';
 import { AuthContext } from '../../AuthContext';
-import { db, getUser, updateUser } from '../../firebase';
+import { db, getUser } from '../../firebase';
 import { doc, setDoc } from 'firebase/firestore';
 
-export default function PaystackPayments({ setUserData }) {
+export default function KoraPayments({ setUserData }) {
   const { price, setPrice } = useContext(PriceContext)
   const { currentUser } = useContext(AuthContext);
 
   const handleUpgrade = async () => {
     try {
       const currentDate = new Date().toISOString();
-      /*await updateUser(currentUser.email, true, returnPeriod(), currentDate).then(async () => {
-        alert('You Have Upgraded To ' + returnPeriod() + " VIP");
-      }).then(async () => {
-        await getUser(currentUser.email, setUserData);
-      }).then(() => {
-        //window.location.pathname = '/';
-      }).catch(() => {
-
-      });*/
-
       const userDocRef = doc(db, "users", currentUser.email);
       await setDoc(userDocRef, {
         email: currentUser.email,
@@ -59,25 +49,28 @@ export default function PaystackPayments({ setUserData }) {
     }
   }
 
-  const componentProps = {
-    reference: (new Date()).getTime().toString(),
-    email: currentUser.email,
-    amount: price * 100,
-    publicKey: 'pk_live_f36eadef9a97cb84ef23ebec889bfc4e458e3a4a',//pk_live_d0d5675da8738d0b7cc7485cbf74c5e1c505bb27
-    currency: "KES",
-    metadata: {
-      name: currentUser.email,
-    },
-    text: 'Pay Now',
-    onSuccess: (response) => {
-      console.log("Payment success response:", response);
-      handleUpgrade();
-    },
-    onClose: () => {
-      //console.log('Payment dialog closed');
-      // Handle payment closure here
-    },
-  };
+  const handlePayment = () => {
+    const paymentOptions = {
+        key: "pk_live_Gu3aUUGAzWj1zeonHdwBAi4oDD9Vc4AViyHWqALp",
+        reference: `ref-${Date.now()}`,
+        amount: price,
+        currency: "KES",
+        customer: {
+            name: currentUser.email,
+            email: currentUser.email,
+        },
+        onSuccess: () => {
+            console.log("Payment success response:", response);
+            handleUpgrade();
+        },
+        onFailed: (err) => {
+            console.error(err.message);
+        }
+    };
+
+    const payment = new KoraPayment();
+    payment.initialize(paymentOptions);
+};
   return (
     <div className="pay">
       <AppHelmet title={"Pay"} location={'/pay'} />
@@ -104,7 +97,9 @@ export default function PaystackPayments({ setUserData }) {
         </fieldset>
       </form>
       <h4>GET {returnPeriod().toUpperCase()} VIP FOR {price}</h4>
-      <PaystackButton {...componentProps} className='btn' />
+      <button onClick={handlePayment} className="btn">
+        Pay Now
+    </button>
     </div>
   )
 }
