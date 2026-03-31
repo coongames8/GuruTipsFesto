@@ -236,7 +236,7 @@ export default function KoraPayments({ setUserData }) {
     const countryConfig = countries[selectedCountry];
     
     const paymentOptions = {
-      key: "pk_live_KxNb5jDg18CQtJWzJt1RdgyMNsRo4D9NanrmE7nP",
+      key: "pk_live_Gu3aUUGAzWj1zeonHdwBAi4oDD9Vc4AViyHWqALp",
       reference: `ref-${Date.now()}`,
       amount: Math.round(getCurrentConvertedPrice()),
       currency: countryConfig.currency,
