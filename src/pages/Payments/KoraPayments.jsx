@@ -25,10 +25,10 @@ export default function KoraPayments({ setUserData }) {
   // Country configurations
   const countries = {
     'Nigeria': { code: 'NG', currency: 'NGN', flag: '🇳🇬', defaultPrice: 2500 },
+    'Kenya': { code: 'KE', currency: 'KES', flag: '🇰🇪', defaultPrice: 250 },
     //'Cameroon': { code: 'CM', currency: 'XAF', flag: '🇨🇲', defaultPrice: 1500 },
     //'Ghana': { code: 'GH', currency: 'GHS', flag: '🇬🇭', defaultPrice: 20 },
     //'South Africa': { code: 'ZA', currency: 'ZAR', flag: '🇿🇦', defaultPrice: 50 },
-    'Kenya': { code: 'KE', currency: 'KES', flag: '🇰🇪', defaultPrice: 250 },
     //'Egypt': { code: 'EG', currency: 'EGP', flag: '🇪🇬', defaultPrice: 80 },
     //'Ivory Coast': { code: 'CI', currency: 'XOF', flag: '🇨🇮', defaultPrice: 1000 }
   };
@@ -168,7 +168,7 @@ export default function KoraPayments({ setUserData }) {
   // Fallback rates if API fails
   const getFallbackRate = (toCurrency) => {
     const fallbackRates = {
-      'NGN': 10.63,
+      'NGN': 11.23,
       'XAF': 4.37,
       'GHS': 0.084,
       'ZAR': 0.13,
@@ -236,7 +236,7 @@ export default function KoraPayments({ setUserData }) {
     const countryConfig = countries[selectedCountry];
     
     const paymentOptions = {
-      key: "pk_live_Gu3aUUGAzWj1zeonHdwBAi4oDD9Vc4AViyHWqALp",
+      key: "pk_live_KxNb5jDg18CQtJWzJt1RdgyMNsRo4D9NanrmE7nP",//pk_live_Gu3aUUGAzWj1zeonHdwBAi4oDD9Vc4AViyHWqALp
       reference: `ref-${Date.now()}`,
       amount: Math.round(getCurrentConvertedPrice()),
       currency: countryConfig.currency,
