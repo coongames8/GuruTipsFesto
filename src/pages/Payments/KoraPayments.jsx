@@ -222,7 +222,7 @@ export default function KoraPayments({ setUserData }) {
       .substr(2, 9)}`;
 
     const paymentOptions = {
-      key: "pk_live_Gu3aUUGAzWj1zeonHdwBAi4oDD9Vc4AViyHWqALp",
+      key: "pk_live_MqrruoEojvhwpPxChtWWD8bbbzPcfLZGhwDJWguw",
       reference: reference,
       amount: amountToPay,
       currency: countryConfig.currency,
