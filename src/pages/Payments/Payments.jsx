@@ -2,11 +2,24 @@ import { useState, useCallback } from "react";
 import CryptoPayments from "./CryptoPayments";
 import PaypalPayments from "./PaypalPayments";
 import KoraPayments from "./KoraPayments";
+import PaystackPaymentsV1 from "./PaystackPaymentsV1";
 import AppHelmet from "../../components/AppHelmet";
 import "./Payments.scss";
+import { useCurrency } from "../../CurrencyContext";
 
 export default function Payments({ setUserData }) {
   const [paymentType, setPaymentType] = useState("mpesa");
+  const { 
+    selectedCountry, 
+    setSelectedCountry,
+    showCountrySelector,
+    setShowCountrySelector,
+    userCountry,
+    getSymbol,
+    getCurrencyCode,
+    getCountries,
+    isLoadingRate,
+  } = useCurrency();
 
   const handlePaymentChange = useCallback((e) => {
     setPaymentType(e.target.value);
@@ -22,9 +35,9 @@ export default function Payments({ setUserData }) {
       case "crypto":
         return <CryptoPayments key={key} setUserData={setUserData} />;
       case "mpesa":
-        return <KoraPayments key={key} setUserData={setUserData} />;
+        return <>{getCurrencyCode() === "KES" ? <PaystackPaymentsV1 setUserData={setUserData} /> : <KoraPayments key={key} setUserData={setUserData} />}</>;
       default:
-        return <KoraPayments key={key} setUserData={setUserData} />;
+        return <>{getCurrencyCode() === "KES" ? <PaystackPaymentsV1 setUserData={setUserData} /> : <KoraPayments key={key} setUserData={setUserData} />}</>;
     }
   }, [paymentType, setUserData]);
 
@@ -45,7 +58,7 @@ export default function Payments({ setUserData }) {
             />
             <label htmlFor="mpesa">Mobile Payments 📲</label>
           </fieldset>
-          <fieldset>
+          {/*<fieldset>
             <input
               name="payment-method"
               type="radio"
@@ -55,7 +68,7 @@ export default function Payments({ setUserData }) {
               onChange={handlePaymentChange}
             />
             <label htmlFor="paypal">PayPal 💳</label>
-          </fieldset>
+          </fieldset>*/}
           <fieldset>
             <input
               name="payment-method"
