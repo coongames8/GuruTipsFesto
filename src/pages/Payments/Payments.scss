@@ -169,7 +169,7 @@
 }
 
 // Crypto Payment Styles
-.crypto-payment-wrapper {
+.crypto-payment-wrapper, .hashback-payment-wrapper {
   width: 100%;
   max-width: 600px;
   margin: 20px auto;
@@ -535,7 +535,7 @@
 }
 
 // Kora Payment Styles
-.kora-payment-wrapper {
+.kora-payment-wrapper, .hashback-payment-wrapper {
   width: 100%;
   max-width: 600px;
   margin: 20px auto;
@@ -719,7 +719,7 @@
     }
   }
 
-  .kora-payment {
+  .kora-payment, .hashback-payment {
     text-align: center;
 
     h3 {
